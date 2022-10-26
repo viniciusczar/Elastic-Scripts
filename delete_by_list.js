@@ -29,15 +29,15 @@ async function queryPages() {
         while (pagesTotal > page) {
           let resultForPage;
           try {
-            resultForPage = await (readPages(numberOfIndice.index, page)).hits.hits;
+            resultForPage = await (readPages(numberOfIndice, page)).hits.hits;
             resultForPage.forEach(async element => {
   
               let result = await dateDiference(element._id, currentDate);
               if (Math.round(result) > 15) {
                 console.log('iterou')
   
-                if (await checkElementById(numberOfIndice.index, element._id)) {
-                  console.log(element._id);
+                if (await checkElementById(numberOfIndice, element._id)) {
+                  console.log(element._id, "Deleted");
                   return true;
                 }
                 console.log("Parou no ID:", element._id);
